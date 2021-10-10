@@ -1,0 +1,40 @@
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+# Technically, this doesn't need to be specified as it is the default value,
+# tho I like being explicit.  Furthermore, this demonstrates how the xdg home
+# dir may be changed, should the need arise.
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# 'less' configuration Tell it to SHUT. UP.  I really don't
+# need to be told I'm at the end of the file...the lack of
+# scrolling kind of gives it away.
+export LESS="$LESS -R -Q"
+#    enable syntax highlighting in 'less' 
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+
