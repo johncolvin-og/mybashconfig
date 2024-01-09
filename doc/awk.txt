@@ -1,0 +1,26 @@
+# Find process that started the shell.  Show only
+# its args and ppid.
+ps -p $$ -o args,ppid
+
+# Look at this sexy little command to print the 2nd
+# to last column of output (matching any and all
+# whitespace as delim) on every line after the 1st.
+#
+# Note: the ps -p $$ -o args,ppid finds the process
+
+ps -p $$ -o args,ppid | awk '{if(NR>1) print $(NF-1)}'
+
+# Another way to do this trick is:
+ps -p $$ -o args,ppid | tail -n +2 | sed 's/\s\s*/ /g' | cut  -d' ' -f 1 | rev
+
+# Building upon this, check out this incantation to display
+# the args of the shell process:
+
+ps -p $$ -o args,ppid | tail -n +2 | awk '{print $NF}' | xargs -i ps -p {} -o args
+
+
+abc
+
+# Damn that is HOT!  Check out the sexy usage of xargs to inject the pid
+# into the middle of the final 'ps' command (xargs passed the pid to
+# the argument placeholder '{}')
