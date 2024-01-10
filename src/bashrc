@@ -120,6 +120,14 @@ crst="$(tput sgr 0)"
 
 LS_COLORS="$LS_COLORS:ln=38;5;226;48;5;234:di=38;5;47;48;5;234:ow=38;5;141;48;5;234:fi=38;5;95:*.h=38;5;039:*.cpp=38;5;024:*.py=38;5;041:*.txt=38;5;251"
 
+if [ "${XDG_CONFIG_HOME:-x}" != "${XDG_CONFIG_HOME}" ]; then
+  export XDG_CONFIG_HOME="$HOME/.config"
+fi
+
+if [ "${XDG_DATA_HOME:-x}" != "${XDG_DATA_HOME}" ]; then
+  export XDG_DATA_HOME="$HOME/.local/share"
+fi
+
 export HISTTIMEFORMAT="%d/%m/%y %T "
 export PATH="$PATH:/home/john/.tools"
 export PS1='\[\e[38;5;242m\]\u\[\e[m\e[37m\]@\[\e[m\]\[\e[38;5;226m\]\h\[\e[m\]:\[\e[38;5;099m\]\w\[\e[m\]$ '
