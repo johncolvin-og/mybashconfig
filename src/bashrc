@@ -129,5 +129,5 @@ if [ "${XDG_DATA_HOME:-x}" != "${XDG_DATA_HOME}" ]; then
 fi
 
 export HISTTIMEFORMAT="%d/%m/%y %T "
-export PATH="$PATH:/home/john/.tools"
+export PATH="$PATH:$HOME/.tools"
 export PS1='\[\e[38;5;242m\]\u\[\e[m\e[37m\]@\[\e[m\]\[\e[38;5;226m\]\h\[\e[m\]:\[\e[38;5;099m\]\w\[\e[m\]$ '
